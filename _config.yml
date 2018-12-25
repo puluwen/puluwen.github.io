@@ -9,8 +9,8 @@ avatarDesc: 文本情感分析
 url: "https://puluwen.github.io"
 
 # Comment
-comment:
-    disqus: puluwen
+# comment:
+#    disqus: puluwen
     # uyan: 2143225  # 有言id,登录有言官网申请
 
 # Social
