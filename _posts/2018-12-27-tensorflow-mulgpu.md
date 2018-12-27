@@ -25,6 +25,7 @@ tag: TensorFlow
 - `模型并行`：将不同的模型计算部分部署在不同的GPU上面同时执行。
 模型并行：
 <img src="/images/posts/模型并行.jpg">
+
 # 2 实验包依赖
 ```
 tensorflow-gpu==>1.4.1
@@ -32,13 +33,17 @@ jieba
 tqdm
 python==>3.5
 ```
+
 # 3 实验步骤
 本次实现的是同步数据并行方式。步骤为
 1. 在CPU下定义`tf.placeholder()`和变量`tf.get_variable()`。
 > 变量不要使用`tf.Variable()`得到,这个需要配合`tf.get_variable_scope().reuse_variables()`才能使得变量在多GPU之间重用
+
 2. 在各个GPU下定义网络和loss，并把梯度加入到一个全局list中
 3. 使用保存了全部梯度的list来计算梯度，计算平均梯度，然后更新模型
+
 # 4 代码
+
 ## 4.1 计算平均梯度函数
 代码来自TensorFlow官方[cifar10_multi_gpu_train.py](https://github.com/tensorflow/models/blob/master/tutorials/image/cifar10/cifar10_multi_gpu_train.py)
 ```python
@@ -86,6 +91,7 @@ with tf.Graph().as_default(), tf.device('/cpu:0'):
  # 保存模型
  self.saver = tf.train.Saver(tf.global_variables())                
 ```
+
 ## 4.3 训练入口
 ```python
 def train(self, sess, batch):
@@ -124,12 +130,14 @@ with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=Tru
             current_step += 1
             summary_writer.add_summary(summary, current_step)   
 ```
+
 # 5 遇到的问题
 ## 5.1 GPU指定问题
 代码中GPU编号依次为**0,1,2,3...**，即便用如下方式指定了具体要使用GPU编号，这也是能使用`for i in range(gpu_num)`的原因。
 ```
 os.environ['CUDA_VISIBLE_DEVICES']='0, 1, 2, 3'
 ```
+
 ## 5.2 多GPU不能共用变量
 我在实际使用时遇到了下面这种提示，这时已经在第一张GPU上定义网络，在第二张卡上定义的时候报错的
 > ValueError: Variable decoder_1/Attention_Wrapper/multi_rnn_cell/cell_0/lstm_cell/kernel does not exist, or was not created with tf.get_variable(). Did you mean to set reuse=tf.AUTO_REUSE in VarScope?
@@ -139,6 +147,7 @@ os.environ['CUDA_VISIBLE_DEVICES']='0, 1, 2, 3'
 ```
 full_name = self.name + "/" + name if self.name else name
 ```
+
 name为传入的参数，debug显示没有问题，出问题的在于self.name，self对应的`VariableScope`类对象是从位于1167行的`get_variable_scope()`里socpe collection里取得的，代表当前的变量空间，这个不知道是在什么时候加入那个scope collection，但是我们可以强制改变self.name参数，把"_1"、“_2“等删掉。代码为
 ```python
     self._name = self._name.replace('_1', '')
@@ -155,6 +164,7 @@ name为传入的参数，debug显示没有问题，出问题的在于self.name�
 > ValueError: Variable embedding/Adam/ already exists, disallowed. Did you mean to set reuse=True or reuse=tf.AUTO_REUSE in VarScope? Originally defined at:
 
 换用其他优化器没有问题，我换成了`tf.train.GradientDescentOptimizer(学习率)`，未报错。
+
 ## 5.4 无GPU支持的kernel
 报错内容为：
 > InvalidArgumentError (see above for traceback): Cannot assign a device for operation 'GPU_1/gradients/f_acc': Could not satisfy explicit device specification '/device:GPU:1' because no supported kernel for GPU devices is available.
@@ -163,6 +173,7 @@ name为传入的参数，debug显示没有问题，出问题的在于self.name�
 ```python
 with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=True), allow_soft_placement=True)) as sess:
 ```
+
 # 6 命名空间和变量空间
 变量的定义是在`tf.variable_scope()`下，求解梯度过程是在`tf.name_scope()`下。
 `tf.variable_scope()`下相同的scope_name可以让变量有相同的命名，包括`tf.get_variable()`得到的变量，还有`tf.Variable()`的变量，不加`tf.get_variable_scope().reuse_variables()`的话就不能重用。
