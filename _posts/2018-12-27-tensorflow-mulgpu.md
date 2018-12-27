@@ -4,7 +4,7 @@ layout: post
 
 title: "TensorFlow单机多卡实现"
 
-date: 2018-12-27 15:25:12 
+date: 2018-12-27
 
 description: "基于TensorFlow的同步数据并行"
 
