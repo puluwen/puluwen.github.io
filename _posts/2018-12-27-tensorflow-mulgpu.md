@@ -26,17 +26,17 @@ tag: TensorFlow
 
    - 同步数据并行：每个batch所有GPU计算完成后，才更新一次参数，收敛速度快，最终训练效果优于**异步数据并行**方式，但是速度略慢，因为速度取决于性能最差的那个GPU。
 
-<img src="images/posts/同步数据并行.jpg" > 
+<img src="/images/posts/同步数据并行.jpg" > 
 
    - 异步数据并行：每个GPU计算完梯度后就各自更新，速度快，但是最终模型的性能略低于同步数据并行方式。
 
-<img src="images/posts/异步数据并行.jpg">
+<img src="/images/posts/异步数据并行.jpg">
 
 - `模型并行`：将不同的模型计算部分部署在不同的GPU上面同时执行。
 
 模型并行：
 
-<img src="images/posts/模型并行.jpg">
+<img src="/images/posts/模型并行.jpg">
 
 # 2 实验包依赖
 
