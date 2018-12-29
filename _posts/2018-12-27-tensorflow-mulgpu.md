@@ -108,7 +108,7 @@ def train(self, sess, batch):
                       self.decoder_targets: batch.decoder_targets,
                       self.decoder_targets_length: batch.decoder_targets_length,
                       self.keep_prob_placeholder: 0.5,
-                      self.batch_size: len(batch.encoder_inputs),
+                      self.batch_size: len(batch.encoder_inputs) / len(self.gpu_num),
                       self.lr_pl: self.learing_rate,
                       self.mask : batch.masks}
         _, loss, summary = sess.run([self.train_op, self.loss, self.summary_op], feed_dict=feed_dict)
