@@ -27,13 +27,16 @@ tag: TensorFlow
 模型并行：
 <img src="/images/posts/模型并行.jpg">
 
-# 2 实验包依赖
+# 2 实验环境
+包依赖
 ```
 tensorflow-gpu==>1.4.1
 jieba
 tqdm
 python==>3.5
 ```
+
+服务器为4张GTX 1080Ti
 
 # 3 实验步骤
 本次实现的是同步数据并行方式。步骤为
@@ -67,30 +70,33 @@ def average_gradients(self, tower_grads):
 以伪代码的形式
 ```python
 with tf.Graph().as_default(), tf.device('/cpu:0'):
- 定义输入占位符tf.placeholder()
- 定义变量tf.get_variable()
- 定义优化器
- 定义全局的梯度的list：multi_grads = []
+    定义输入占位符tf.placeholder()
+    定义变量tf.get_variable()
+    使用tf.split()函数对各个placeholder进行分割，意思是整体的batch会拆分为几个小的batch分别喂给不同的GPU
+    如self.encoder_inputs_split = tf.split(value=self.encoder_inputs, num_or_size_splits=self.gpu_num, axis=0)
+    定义优化器
+    定义全局的梯度的list：multi_grads = []
  
- with tf.variable_scope(tf.get_variable_scope()):
-        for i in self.gpu_list:#这里也可以使用range(gpu_num)，反正就是一个GPU编号的list
-            print('gpu:', i)
-            with tf.device('/gpu:%d'%i):
-             self.loss = 得到你的loss
-                # tensorboard显示各GPU的loss
-                tf.summary.scalar('loss_{}'.format(i), self.loss)
-                # 重用变量
-                tf.get_variable_scope().reuse_variables()
-                self.summary_op = tf.summary.merge_all()
-                # 计算梯度
-                gradients = optimizer.compute_gradients(self.loss)
-                multi_grads.append(gradients)
+    with tf.variable_scope(tf.get_variable_scope()):
+        for gpu_id in self.gpu_list:#这里也可以使用range(gpu_num)，反正就是一个GPU编号的list
+            with tf.device('/gpu:%d'%gpu_id), tf.variable_scope(name_or_scope=tf.get_variable_scope(), reuse= gpu_id > 0):
+                with tf.name_scope('%s_%d' % ('GPU', gpu_id)) as scope:
+                    当前GPU使用的placeholdert：self.encoder_inputs_split[gpu_id]
+                    self.loss = 得到你的loss
+                    # tensorboard显示各GPU的loss
+                    tf.summary.scalar('loss_{}'.format(i), self.loss)
+                    # 重用变量
+                    tf.get_variable_scope().reuse_variables()
+                    self.summary_op = tf.summary.merge_all()
+                    # 计算梯度
+                    gradients = optimizer.compute_gradients(self.loss)
+                    multi_grads.append(gradients)
 
- # 计算平均梯度
- grads = self.average_gradients(multi_grads)
- self.train_op = optimizer.apply_gradients(grads)
- # 保存模型
- self.saver = tf.train.Saver(tf.global_variables())                
+    # 计算平均梯度
+    grads = self.average_gradients(multi_grads)
+    self.train_op = optimizer.apply_gradients(grads)
+    # 保存模型
+    self.saver = tf.train.Saver(tf.global_variables())                
 ```
 
 ## 4.3 训练入口
@@ -139,26 +145,31 @@ with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=Tru
 os.environ['CUDA_VISIBLE_DEVICES']='0, 1, 2, 3'
 ```
 
-## 5.2 多GPU不能共用变量
-我在实际使用时遇到了下面这种提示，这时已经在第一张GPU上定义网络，在第二张卡上定义的时候报错的
-> ValueError: Variable decoder_1/Attention_Wrapper/multi_rnn_cell/cell_0/lstm_cell/kernel does not exist, or was not created with tf.get_variable(). Did you mean to set reuse=tf.AUTO_REUSE in VarScope?
-
-- 原因分析：在第一张卡上，变量名**Variable decoder_1/Attention_Wrapper/multi_rnn_cell/cell_0/lstm_cell/kernel does not exist**，在第二张卡上系统加了一个“_1”后缀，导致找不到已经定义的共享变量，导致失败。
-- 解决办法：正式的解决办法么有找到，虽然代码一样，但是找到一个取巧办法。根据报错提示，反向手动debug（一步一步打印变量名），发现在`site-packages/tensorflow/python/ops/variable_scope.py`的1034行的`get_variable()`函数的下面这行代码里得到的变量名空间下的完整路径
-```
-full_name = self.name + "/" + name if self.name else name
-```
-
-name为传入的参数，debug显示没有问题，出问题的在于self.name，self对应的`VariableScope`类对象是从位于1167行的`get_variable_scope()`里socpe collection里取得的，代表当前的变量空间，这个不知道是在什么时候加入那个scope collection，但是我们可以强制改变self.name参数，把"_1"、“_2“等删掉。代码为
+## 5.2 RNN的batch划分问题
+因为我做的是基于seq2seq的一个闲聊模型，所以会用到RNN，遇到了算loss的时候logits和labels的shape的第一维不相等。
+比如：假设batch size等于4，使用2张卡,则batch_size_per_gpu=2，现在我有一个batch的样本，样本的目标输出序列的长度分别为{1,2,3,4},则最大长度max_length=4，预处理会把所有样本的目标输出序列补到max_length长度，模型的输入还会包括一个各样本长度的length_list={1,2,3,4}
 ```python
-    self._name = self._name.replace('_1', '')
-    self._name = self._name.replace('_2', '')
-    self._name = self._name.replace('_3', '')
-    print('--- ', self.name)
-    full_name = self.name + "/" + name if self.name else name
+# decoder的时候的部分代码
+training_helper = tf.contrib.seq2seq.TrainingHelper(inputs=decoder_inputs_embedded,
+                                    sequence_length=self.decoder_targets_length_split[gpu_id],
+                                    time_major=False, name='training_helper')
+training_decoder = tf.contrib.seq2seq.BasicDecoder(cell=decoder_cell, 
+                                    helper=training_helper,
+                                    initial_state=decoder_initial_state, output_layer=output_layer)
+decoder_outputs, _, _ = tf.contrib.seq2seq.dynamic_decode(decoder=training_decoder,
+                                    impute_finished=True,
+                                    maximum_iterations=self.max_target_sequence_length)
+# 根据输出计算loss和梯度，并定义进行更新的AdamOptimizer和train_op
+self.decoder_logits_train = tf.identity(decoder_outputs.rnn_output)
+self.decoder_predict_train = tf.argmax(self.decoder_logits_train, axis=-1, name='decoder_pred_train')
+# 使用sequence_loss计算loss，这里需要传入之前定义的mask标志
+self.loss = tf.contrib.seq2seq.sequence_loss(logits=self.decoder_logits_train,
+                                    targets=self.decoder_targets_split[gpu_id], 
+                                    weights=self.mask_split[gpu_id])
 ```
 
-这个问题就解决了
+在`TrainingHelper`里面给了`self.decoder_targets_length_split[gpu_id]`参数，加入当前我是第一张卡，则其得到的样本目标长度分别为1，2的那个。这个时候如果将这两个样本目标序列真实的长度[1,2]输入进去,这个时候max_length_gpu=2，则得到的输出的shape就是[max_length_gpu*batch_size_per_gpu, 词表大小]=[]（这里TensorFlow是把两个样本的输出拼接在一起的，所以shape不是[2, batch_size_per_gpu， 词表大小]，label也是这样），然后计算loss的时候，label是进行过pad的，所以两个样本拼接后，shape为[4*batch_size_per_gpu]=[8]。[4,词表大小]和[8]的第一维度不等，报错。
+- 解决方法：输入模型的length_list不使用真实样本里目标序列的长度，而是全部固定为pad之后的长度，即全部设为max_length，即对batch里所有样本，RNN都计算max_length个step。但是这样我们怎么计算真实的loss呢，别担心，最后的`sequence_loss`里，不是还有个参数`weights`吗，样本当前位置如果是pad来的，就给这个位置赋予0权重，那么这个位置的loss就不会被计算到总loss里面去。
 
 ## 5.3 Adam优化器问题
 因为Adam优化器内部会定义变量，即便在CPU下定义，也会报优化器重复定义问题
@@ -180,5 +191,23 @@ with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=Tru
 `tf.variable_scope()`下相同的scope_name可以让变量有相同的命名，包括`tf.get_variable()`得到的变量，还有`tf.Variable()`的变量，不加`tf.get_variable_scope().reuse_variables()`的话就不能重用。
 所以不同GPU用了不同的`tf.name_scope()`，全部GPU在同一个`tf.variable_scope()`下
 
+# 7 速度对比
+我的服务器是4张 GTX 1080 Ti ，每张卡11G显存。速度对比如下：
+
+|显卡数量|batch-size|显存占用情况|单个epoch时间|
+|:---: |:---: |:---: |:---: |
+|1|64|8300|1小时15分钟|
+|2|128|4300|45分钟|
+|4|256|4300|40分钟|
+|4|512|8400|30分钟|
+
+第一张GPU的显存占用要比其他GPU多占用几M。
+
+
+# 8 参考：
+
+1. https://github.com/tensorflow/models/blob/master/tutorials/image/cifar10/cifar10_multi_gpu_train.py（TensorFlow官方的基于cifar10的多卡模型示例，大多数博客都用的这个代码） 
+2. https://www.jianshu.com/p/afb22f123e91 （我的第一版多卡模型参考的这个，流程和官方那个一样，但是实际速度比单卡更慢了，一个epoch要2个小时，后猜测是给所有GPU输入了同样的batch，等效于跑了四个同样的模型，只是初始化位置不一样而已，每次梯度都是平均梯度）
+2. https://blog.csdn.net/u011961856/article/details/78011270 （这个解决了我如何给不同GPU输入不同batch的疑惑，官方的那个没有相关操作）
 
 
