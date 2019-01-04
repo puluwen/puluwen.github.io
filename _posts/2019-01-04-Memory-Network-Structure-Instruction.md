@@ -28,6 +28,7 @@ tag: 网络结构
 
 ## 2.2 多层MN
 ![](https://upload-images.jianshu.io/upload_images/3395407-6f0b5ceff74f2394.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/436/format/webp)
+
 首先来讲，上面几层的输入就是下层o和u的和。至于各层的参数选择，论文中提出了两种方法（主要是为了减少参数量，如果每层参数都不同的话会导致参数很多难以训练）。
 
 1. Adjacent：这种方法让相邻层之间的A=C。也就是说Ak+1=Ck，此外W等于顶层的C，B等于底层的A，这样就减少了一半的参数量。
