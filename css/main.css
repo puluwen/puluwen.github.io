@@ -119,13 +119,6 @@ h1 {
   position:relative;
 }
 
-h1[class="panel-cover__title panel-title"] {
-  background-color:transparent;
-}
-
-h1[class="post-title"] {
-  background-color:transparent;
-}
 
 h2 {
   font-size: 1.5em; 
@@ -514,7 +507,8 @@ img::-moz-selection {
     margin-top: 20px;
     font-size: 1.8em;
     letter-spacing: 4px;
-    color: #FFF; }
+    color: #FFF;
+    background-color:transparent;}
 
   .panel-subtitle {
     font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande", "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
