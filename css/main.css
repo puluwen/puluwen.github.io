@@ -151,6 +151,13 @@ h3 {
   position:relative;
 }
 
+h3[class="tagh3"] {
+  border-radius: 4px;
+  background:#B9D3EE;
+  box-shadow: 0px 5px 5px #9FB6CD;
+  border-left: 6px solid #1874CD;
+}
+
 h4 {
   font-size: 1.2em; 
   padding: 6px 15px;
