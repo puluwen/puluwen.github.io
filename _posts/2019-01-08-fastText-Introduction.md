@@ -156,7 +156,9 @@ fastText是一个能用浅层网络取得和深度网络相媲美的精度，并
 
 # github地址
 [文本分类方法汇总](https://github.com/brightmart/text_classification)
+
 [fasttext的python接口地址](https://github.com/salestock/fastText.py)
+
 [faxtText官方github地址](https://github.com/salestock/fastText.py)
 
 # 参考
