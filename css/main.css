@@ -508,7 +508,9 @@ img::-moz-selection {
     font-size: 1.8em;
     letter-spacing: 4px;
     color: #FFF;
-    background-color:transparent;}
+    background-color:transparent;
+    box-shadow: 0px 0px 0px #9FB6CD;
+    border-left: 0px solid #1874CD;}
 
   .panel-subtitle {
     font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande", "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
