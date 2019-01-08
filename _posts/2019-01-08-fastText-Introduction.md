@@ -30,7 +30,6 @@ fastText的一个作者是`Thomas Mikolov`。也正是这个人在谷歌的时�
 
 每个词被看做是 n-gram字母串包。为了区分前后缀情况，"<"， ">"符号被加到了词的前后端。除了词的子串外，词本身也被包含进了 n-gram字母串包。以 where 为例，n=3 的情况下，其子串分别为 `<wh, whe, her, ere, re>，where` 。
 
-## 2.1 网络结构
 网络结构和word2vec类似，都是一个浅层网络，与word2vec不同点在于：
 - word2vec的输入只有当前词的上下文2d个词，而fastText是当前句子或者当前文本的全部词的序列
 - word2vec是预测当前词的概率，fastText是预测当前文本label的概率
@@ -45,7 +44,8 @@ fastText
 ![](https://img-blog.csdn.net/2018080722073476?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3ltYWluaQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 同样，fastText也使用了`Hierarchical Softmax`来加速最后一层softmax的计算。
-## 2.2 实现
+
+# 3 实现
 安装fastText的python版本，如果要使用最新版，可以自行编译
 ```shell
 $ git clone https://github.com/facebookresearch/fastText.git
@@ -57,7 +57,7 @@ $ pip install .
 ```shel
 pip install fastText
 ```
-### 2.1 词向量训练
+## 3.1 词向量训练
 数据准备,中文的话，分完词后空格隔开就行：
 > 联名储值卡 赠送 电子 标签 绑 银行 联名 记账 卡
 
@@ -82,7 +82,7 @@ def train_unsupervised(input, model="skipgram", lr=0.05, dim=100,
   pass
 ```
 
-### 2.2 分类
+## 3.2 分类
 数据准备，和上面一样，只是每行多一个label
 > __label__greet 你好 啊
 
@@ -124,7 +124,7 @@ def train_supervised(input, lr=0.1, dim=100,
   pass
 ```
 
-### 3.3 推荐使用fasttext封装
+## 3.3 推荐使用fasttext封装
 这个工具包对fastText进行了封装，更易于使用
 安装使用`pip install fasttext`就可以
 分类
@@ -151,7 +151,7 @@ print(result)
 
 ```
 # 4 总结
-fastText是一个能用浅层网络取得和深度网络相媲美的精度，并且分类速度极快的算法。按照作者的说法“在标准的多核CPU上，能够训练10亿词级别语料库的词向量在10分钟之内，能够分类有着30万多类别的50多万句子在1分钟之内”。但是它也有自己的使用条件，它适合类别特别多的分类问题，如果类别比较少，容易过拟合。
+fastText是一个能用浅层网络取得和深度网络相媲美的精度（还是比深层网络差点），但是分类速度极快的算法（10万数据分几类，训练时间不到1秒）。按照作者的说法“在标准的多核CPU上，能够训练10亿词级别语料库的词向量在10分钟之内，能够分类有着30万多类别的50多万句子在1分钟之内”。但是它也有自己的使用条件，它适合类别特别多的分类问题，如果类别比较少，容易过拟合。
 
 
 
