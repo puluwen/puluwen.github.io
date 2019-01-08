@@ -30,7 +30,7 @@ Usage:
     
     
       <div class="hat_title">
-        <h3>{{this_year}}</h3>
+        <h3 class="tagh3">{{this_year}}</h3>
       </div>
       <div class="post_list">
       <ul>
