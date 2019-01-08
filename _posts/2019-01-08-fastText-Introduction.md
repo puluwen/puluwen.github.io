@@ -13,6 +13,7 @@ fastText是Facebook在2016年开源的一个工具，主要功能有两个：
 2. 文本分类
 
 使用了自然语言处理和机器学习中最成功的理念，包括了`词袋（bow）`已经`n-gram` 表征语句，还有使用`subword`信息。
+
 ## 1.1 关于作者
 fastText的一个作者是`Thomas Mikolov`。也正是这个人在2012年带领团队提出了`word2vec`代替了`ont-hot`编码，将词表示为一个低维连续嵌入，极大促进了NLP的发展。14年她去了脸书，然后提出了word2vec的改进版:fasttext。所以fastText和word2vec在结构上很相似。
 
