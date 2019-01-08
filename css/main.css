@@ -125,6 +125,12 @@ h1[class="panel-cover__title panel-title"] {
   border-left: 0px solid #1874CD;
 }
 
+h1[class="post-title"] {
+  background-color:transparent;
+  box-shadow: 0px 0px 0px #9FB6CD;
+  border-left: 0px solid #1874CD;
+}
+
 h2 {
   font-size: 1.5em; 
   /*background:#B9D3EE;*/
