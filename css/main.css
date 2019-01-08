@@ -120,17 +120,11 @@ h1 {
 }
 
 h1[class="panel-cover__title panel-title"] {
-  margin-top: 0;
-  font-size: 2.0em;
-  line-height: 1.2em;
-  letter-spacing: .05em;
+  background-color:transparent;
 }
 
 h1[class="post-title"] {
-  margin-top: 0;
-  font-size: 2.0em;
-  line-height: 1.2em;
-  letter-spacing: .05em;
+  background-color:transparent;
 }
 
 h2 {
