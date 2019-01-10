@@ -269,7 +269,14 @@ td:last-child {
   padding-right: 10px; 
   border: 1px solid #363636;
 }
-
+/* 悬浮变色 */
+table tr:hover {
+    background: #efefef;
+}
+/* 隔行变色 */
+table tbody tr:nth-child(2n) {
+    background: rgba(158,188,226,0.12);
+}
 /*pager start----------------*/
 .post-container 
 .pager li{ 
