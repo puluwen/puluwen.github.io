@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Facebook文本分类工具fastText介绍"
-date: 2019-01-08
-description: "简单介绍一下fastText工具，训练速度极快"
-tag: 文本分类
+title: "tensorflow和keras版本对应关系"
+date: 2019-01-10
+description: "版本不对应，容易出现各种莫名的问题"
+tag: TensorFlow
 
 ---
 
