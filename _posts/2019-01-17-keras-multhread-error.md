@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "keras在多线程环境下的错误：Not an element of tensor graph"
+title: "keras在多线程环境下部署的错误：Not an element of tensor graph"
 date: 2019-01-17
 description: "将keras用于生产环境时，比如加入Django里时，多线程环境下报的错误"
 tag: keras
