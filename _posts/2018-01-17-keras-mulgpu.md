@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "使用keras搭建多GPU模型"
-date: 2018-12-27
+date: 2019-01-17
 description: "介绍用keras做前端，TensorFlow做后端搭建多GPU模型"
 tag: keras
 
