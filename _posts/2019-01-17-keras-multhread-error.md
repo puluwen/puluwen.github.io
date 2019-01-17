@@ -15,13 +15,14 @@ tag: keras
 恢复模型的线程和预测时的线程不一致，导致graph不一样，
 
 # 解决办法
-1. 在恢复模型时保存此时的graph，
+1.在恢复模型时保存此时的graph，
 ```python
 self.model.load_weights(model_dir)
 self.graph = tf.get_default_graph()
 ```
 
-2. 在预测时用这个graph作为default graph。
+2.在预测时用这个graph作为default graph
+
 ```python
 with self.graph.as_default():
     self.model.predict([x])
