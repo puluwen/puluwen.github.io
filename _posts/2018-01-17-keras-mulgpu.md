@@ -12,6 +12,8 @@ tag: keras
 ```python
 import tensorflow as tf
 from keras.utils import multi_gpu_model
+import os
+os.environ['CUDA_VISIBLE_DEVICES']='0, 1, 2, 3' #指定要使用的GPU
 
 
 with tf.device('/cpu:0'):
