@@ -7,6 +7,7 @@ tag: keras
 
 ---
 
+在用Django等工具对keras模型进行部署时，因为多线程原因，模型总是不能正确执行
 
 错误提示：
 > TypeError: Cannot interpret feed_dict key as Tensor: Tensor Tensor("Placeholder:0", shape=(2004, 256), dtype=float32) is not an element of this graph
