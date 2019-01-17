@@ -3,7 +3,7 @@ layout: post
 title: "Rasa的安装问题"
 date: 2018-12-27
 description: "介绍自己在安装Rasa的过程中遇到的坑"
-tag: Rasa
+tag: 问答系统
 
 ---
 
