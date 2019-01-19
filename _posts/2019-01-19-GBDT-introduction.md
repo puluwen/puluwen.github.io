@@ -7,7 +7,7 @@ tag: 机器学习
 
 ---
 
-基本的结构：Gradient Boosting + 决策树 = GBDT
+基本的结构：`Gradient Boosting + 决策树 = GBDT`
 
 # 1 算法流程
 ![](https://upload-images.jianshu.io/upload_images/2950962-d5189de9e3e7ba05.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/594/format/webp)
