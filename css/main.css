@@ -217,6 +217,10 @@ code {
   vertical-align: bottom;
   word-wrap: break-word; }
 
+code[class="highlighter-rouge"] {
+    color:#c7254e
+    background-color:#f9f2f4}
+
 pre {
   margin-bottom: 1.3em;
   padding: 1em 2.5%;
