@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "简单介绍一下记忆网络的结构Memory Network"
+title: "记忆网络的结构简介"
 date: 2019-01-04
 description: "简单介绍一下记忆网络，弄清楚结构就行了"
 tag: 网络结构
