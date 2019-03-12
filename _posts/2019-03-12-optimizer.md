@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "并查集"
+title: "优化器之间的关系图"
 date: 2019-03-12
 description: "深度学习优化器之间的关系图"
-tag: 介绍深度学习优化器的发展
+tag: 深度学习
 
 ---
 
