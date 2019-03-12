@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "并查集"
-date: 2019-02-21
-description: "并查集关键点"
-tag: 数据结构
+date: 2019-03-12
+description: "深度学习优化器之间的关系图"
+tag: 介绍深度学习优化器的发展
 
 ---
 
