@@ -10,6 +10,11 @@ tag: 深度学习
 因为包含公式（公式表述最方便），所以就手写了
 <img src="/images/posts/optimizer.jpg">
 
+![](https://img-blog.csdn.net/20180426130002689)
+![](https://img-blog.csdn.net/20180426113728916)
+![](https://img-blog.csdn.net/20180425221525155)
+
+
 # 参考
 1. https://zhuanlan.zhihu.com/p/21486826
 2. https://zhuanlan.zhihu.com/p/22810533
