@@ -358,7 +358,7 @@ img::-moz-selection {
 
   .date,
   .time,
-  .author{ color: #c7c7c7; }
+  .author{ color: #000000; }
   .date a,
   .time a,
   .author a,
@@ -437,7 +437,7 @@ img::-moz-selection {
     padding: 2em 0 0 0;
     border-top: 1px solid #DDDDDD;
     font-size: .7em;
-    color: #b3b3b3; }
+    /*color: #b3b3b3;*/ }
 
   .footer__copyright {
     display: block;
@@ -476,7 +476,7 @@ img::-moz-selection {
 
   .post-meta {
     margin: 0;
-    color: #c7c7c7; 
+    color: #000000;
   }
 
   .post-meta__date span {
