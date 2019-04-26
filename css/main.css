@@ -358,7 +358,7 @@ img::-moz-selection {
 
   .date,
   .time,
-  .author{ color: #000000; }
+  .author{ color: #999999; }
   .date a,
   .time a,
   .author a,
@@ -476,7 +476,7 @@ img::-moz-selection {
 
   .post-meta {
     margin: 0;
-    color: #000000;
+    color: #999999;
   }
 
   .post-meta__date span {
