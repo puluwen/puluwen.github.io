@@ -72,7 +72,7 @@ sheet.write(1, 1, txt2.decode('utf-8'))
  
 # 最后，将以上操作保存到指定的Excel文件中
 book.save(r'e:\test1.xls')  # 在字符串前加r，声明为raw字符串，这样就不会处理其中的转义了。否则，可能会报错
-```
+``` 
 
 # xlsxwriter使用
 ```python
