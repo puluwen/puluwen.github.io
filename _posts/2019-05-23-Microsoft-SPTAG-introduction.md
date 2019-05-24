@@ -7,6 +7,8 @@ tag: 工具
 
 ---
 
+本博客介绍SPTAG在搭建时看过的有用的博客，使用时遇到的问题
+
 # 1.功能
 `SPTAG`是微软在2019年2月左右开源的一个用于向量搜索的工具。[官方网站](https://github.com/microsoft/SPTAG)。
 搜索速度快，200万数据，向量768维度情景下，搜索一速度为5ms。
@@ -23,10 +25,10 @@ tbb >= 4.2
 ```
 
 ## 2.1 Ubuntu和Deppin
-- 安装swig：https://blog.csdn.net/zhangkzz/article/details/88555830
-- 安装TBB：https://blog.csdn.net/u010793236/article/details/74010571（Mac也适用），TBB[下载](https://github.com/01org/tbb/releases)的时候要下载源码，重新编译
-- cmake：https://www.linuxidc.com/Linux/2018-09/154165.htm
-- boost：https://www.jianshu.com/p/b280a9f90b05
+- 安装swig：<https://blog.csdn.net/zhangkzz/article/details/88555830>
+- 安装TBB：<https://blog.csdn.net/u010793236/article/details/74010571>（Mac也适用），TBB[下载](https://github.com/01org/tbb/releases)的时候要下载源码，重新编译
+- cmake：<https://www.linuxidc.com/Linux/2018-09/154165.htm>
+- boost：<https://www.jianshu.com/p/b280a9f90b05>
 
 安装好后，如果不能使用boost的库：https://blog.csdn.net/zx7415963/article/details/46845161
 > Linux查看boost版本 dpkg -S /usr/include/boost/version.hpp
@@ -71,16 +73,15 @@ make
 
 ## 2.2 Mac
 在Mac上我最终没有安装成功。SPTAG需要`g++编译器`，虽然我用`g++`替换了Mac的`clang编译器`，最后还是没有安装成功。
-- 安装swig：http://blog.sina.com.cn/s/blog_4c191f7a0102z47f.html
-- 安装TBB：同Ubuntu，但是想用gcc编译的话，要在Makefile文件里开头加compiler=gcc
+- 安装swig：<http://blog.sina.com.cn/s/blog_4c191f7a0102z47f.html>
+- 安装TBB：同Ubuntu，但是想用gcc编译的话，要在Makefile文件里开头加`compiler=gcc`
 
 安装SPTAG失败：最后失败在这里一步，不能生成dylib连接文件，不晓得是tbb什么问题，换成gcc编译的tbb还是报相同的问题
-<img src='/images/posts/sptag-mac-install-error.png'>
 ![](/images/posts/sptag-mac-install-error.png)
 
 # 3.原理介绍
-SPTAG数据结构支持KDT和BKT，距离度量支持L2和cos距离。
-- KDT就是k-d树的多维扩展，https://blog.csdn.net/xbmatrix/article/details/63683614，李航的《统计学习方法上也有》
+SPTAG数据结构支持`KDT`和`BKT`，距离度量支持`L2`和`cos`距离。
+- KDT就是k-d树的多维扩展，[介绍](https://blog.csdn.net/xbmatrix/article/details/63683614)，李航的《统计学习方法上》也有介绍
 - BKT:全称是 balanced k-means tree，目前还未找到资料
 
 >注意：SPTAG目前（2019年5月23日）支持的数据类型包括Int8, Int16 and Float (float32)，还不支持float64,。
