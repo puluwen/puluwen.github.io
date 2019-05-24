@@ -10,7 +10,7 @@ tag: 工具
 本博客介绍SPTAG在搭建时看过的有用的博客，使用时遇到的问题
 
 # 1.功能
-`SPTAG`是微软在2019年2月左右开源的一个用于向量搜索的工具。[官方网站](https://github.com/microsoft/SPTAG)。
+`SPTAG`是微软在2019年2月左右开源的一个用于向量搜索的工具。[github官方网站](https://github.com/microsoft/SPTAG)。
 搜索速度快，200万数据，向量768维度情景下，搜索一速度为5ms。
 本博客记录我使用SPTAG的一些总结，包含SPTAG安装，与使用时遇到的问题。
 
