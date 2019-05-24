@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "python读取Excel常用包，可插入删除一行一列"
-date: 2019-05-06
-description: "介绍python读取Excel常用的包，包含插入如何一行一列"
+title: "微软SPTAG向量搜索工具"
+date: 2019-05-23
+description: "介绍SPTAG的搭建和使用时遇到的一些问题"
 tag: 工具
 
 ---
@@ -58,6 +58,17 @@ else()
 endif()
 ```
 
+- 编译SPTAG
+```shell
+mkdir build
+cd build
+cmake .. 
+make
+```
+
+- 使用
+编译完成后，在Release目录下生成的东西拷贝到你要用的地方就好了
+
 ## 2.2 Mac
 在Mac上我最终没有安装成功。SPTAG需要`g++编译器`，虽然我用`g++`替换了Mac的`clang编译器`，最后还是没有安装成功。
 - 安装swig：http://blog.sina.com.cn/s/blog_4c191f7a0102z47f.html
@@ -72,6 +83,9 @@ SPTAG数据结构支持KDT和BKT，距离度量支持L2和cos距离。
 - BKT:全称是 balanced k-means tree，目前还未找到资料
 
 >注意：SPTAG目前（2019年5月23日）支持的数据类型包括Int8, Int16 and Float (float32)，还不支持float64,。
+
+# 使用
+代码没啥好讲的，[官网上](https://github.com/microsoft/SPTAG/blob/master/docs/GettingStart.md)上已经给了使用方法。其代码下是直接调用了C++库，没有任何其他处理，所以不能通过python去debug。
 
 # 4.实验
 ## 4.1实验记录
