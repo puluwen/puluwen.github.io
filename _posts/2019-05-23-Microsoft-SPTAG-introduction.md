@@ -63,8 +63,7 @@ endif()
 
 ```shell
 mkdir build
-cd build
-cmake .. 
+cd build && cmake .. 
 make
 ```
 
@@ -81,7 +80,7 @@ make
 
 # 3.原理介绍
 SPTAG数据结构支持`KDT`和`BKT`，距离度量支持`L2`和`cos`距离。
-- KDT就是k-d树的多维扩展，[介绍](https://blog.csdn.net/xbmatrix/article/details/63683614)，李航的《统计学习方法》也有介绍
+- KDT就是`二叉搜索树`的多维扩展，[介绍](https://blog.csdn.net/xbmatrix/article/details/63683614)，李航的《统计学习方法》也有介绍
 - BKT:全称是 balanced k-means tree，目前还未找到资料
 
 >注意：SPTAG目前（2019年5月23日）支持的数据类型包括Int8, Int16 and Float (float32)，还不支持float64,所以如果你的模型输出是numpy.float64的话，需要用numpy.astype(numpy.float32)强转。
