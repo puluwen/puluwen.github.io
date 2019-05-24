@@ -75,7 +75,7 @@ make
 - 安装TBB：同Ubuntu，但是想用gcc编译的话，要在Makefile文件里开头加compiler=gcc
 
 安装SPTAG失败：最后失败在这里一步，不能生成dylib连接文件，不晓得是tbb什么问题，换成gcc编译的tbb还是报相同的问题
-<img src='/image/sptag-mac-install-error.png'>
+<img src='/images/posts/sptag-mac-install-error.png'>
 
 # 3.原理介绍
 SPTAG数据结构支持KDT和BKT，距离度量支持L2和cos距离。
