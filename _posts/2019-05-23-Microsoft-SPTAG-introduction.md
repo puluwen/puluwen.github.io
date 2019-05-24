@@ -25,10 +25,10 @@ tbb >= 4.2
 ```
 
 ## 2.1 Ubuntu和Deppin
-- 安装swig：<https://blog.csdn.net/zhangkzz/article/details/88555830>
-- 安装TBB：<https://blog.csdn.net/u010793236/article/details/74010571>（Mac也适用），TBB[下载](https://github.com/01org/tbb/releases)的时候要下载源码，重新编译
-- cmake：<https://www.linuxidc.com/Linux/2018-09/154165.htm>
-- boost：<https://www.jianshu.com/p/b280a9f90b05>
+- [安装swig](https://blog.csdn.net/zhangkzz/article/details/88555830)
+- [安装TBB](https://blog.csdn.net/u010793236/article/details/74010571)（Mac也适用），TBB[下载](https://github.com/01org/tbb/releases)的时候要下载源码，重新编译
+- [cmake](https://www.linuxidc.com/Linux/2018-09/154165.htm)
+- [boost](https://www.jianshu.com/p/b280a9f90b05)
 
 安装好后，如果不能使用boost的库：https://blog.csdn.net/zx7415963/article/details/46845161
 > Linux查看boost版本 dpkg -S /usr/include/boost/version.hpp
@@ -73,7 +73,7 @@ make
 
 ## 2.2 Mac
 在Mac上我最终没有安装成功。SPTAG需要`g++编译器`，虽然我用`g++`替换了Mac的`clang编译器`，最后还是没有安装成功。
-- 安装swig：<http://blog.sina.com.cn/s/blog_4c191f7a0102z47f.html>
+- [安装swig](http://blog.sina.com.cn/s/blog_4c191f7a0102z47f.html)
 - 安装TBB：同Ubuntu，但是想用gcc编译的话，要在Makefile文件里开头加`compiler=gcc`
 
 安装SPTAG失败：最后失败在这里一步，不能生成dylib连接文件，不晓得是tbb什么问题，换成gcc编译的tbb还是报相同的问题
