@@ -68,6 +68,7 @@ make
 ```
 
 - 使用
+
 编译完成后，在Release目录下生成的东西拷贝到你要用的地方就好了
 
 ## 2.2 Mac
@@ -85,7 +86,7 @@ SPTAG数据结构支持`KDT`和`BKT`，距离度量支持`L2`和`cos`距离。
 
 >注意：SPTAG目前（2019年5月23日）支持的数据类型包括Int8, Int16 and Float (float32)，还不支持float64,所以如果你的模型输出是numpy.float64的话，需要用numpy.astype(numpy.float32)强转。
 
-# 4使用
+# 4 编码
 代码没啥好讲的，[官网上](https://github.com/microsoft/SPTAG/blob/master/docs/GettingStart.md)上已经给了使用方法。其代码下是直接调用了C++库，没有任何其他处理，所以不能通过python去debug。
 
 # 5.实验
