@@ -12,7 +12,7 @@ tag: 投稿
 cover page直接翻译过来是封面的意思，其实也差不多。有一些期刊不会直接说是cover page，比如有说是论文第一页的，也有像下面这样说，其实也是cover page的意思。
 > structured abstract (Background/ introduction, Methods, Results and Conclusions).
 
-也正如下面这个描述，cover page的内容一般是你的论文仅保留摘要，其他章节全部删掉，然后按照下面这几个部分依次罗列你的摘要
+也正如上面这个描述，cover page的内容一般是你的论文仅保留摘要，其他章节全部删掉，然后按照下面这几个部分依次罗列你的摘要
 
 # 2 cover letter
 这个其实是**投稿信**，写给编辑的信，有些人会把它和cover page搞混。
