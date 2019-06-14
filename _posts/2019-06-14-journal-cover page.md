@@ -28,6 +28,7 @@ cover page直接翻译过来是封面的意思，其实也差不多。有一些�
 **Human and Animal Rights** This article does not contain any studies with human or animal subjects performed by any of the authors.
 
 <br>
+
 # 注意
 cover page 和 cover letter 不是必须的，看期刊要求。
 如果期刊已经投出去了，但是没交这个，如果是必须的，期刊会发邮件来提醒你补上的，然后再重新提交。
