@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "期刊投稿cover page、cover letter、利益冲突申明"
+title: "期刊投稿cover page写法、cover letter模板、利益冲突申明"
 date: 2019-06-14
 description: "介绍期刊latex投稿时除了latex文件还需要的其他可能文件"
 tag: 投稿
@@ -17,7 +17,7 @@ cover page直接翻译过来是`封面`的意思，其实也差不多。有一�
 # 2 cover letter
 这个其实是`投稿信`，写给编辑的信，有些人会把它和cover page搞混。<br>
 信的内容是你投稿了他们XXX期刊的论文，你的论文的主要内容。所以其实内容主要还是摘要里的东西。<br>
-这个东西期刊不会提供模板，但是在[小木虫论文](http://muchong.com/bbs/index.php) 里找到了一个人分享的[心得](http://muchong.com/t-13378163-1)，不仅有模板，还有写作指导。<br>
+这个东西期刊不会提供模板，但是在[小木虫论文](http://muchong.com/bbs/index.php) 里找到了一个人分享的[心得](http://muchong.com/t-13378163-1)，不仅有`模板`，还有写作指导。<br>
 
 # 3 利益冲突申明
 一般会让你在论文中某个地方（reference之前）申明你的研究可能涉及的冲突、资金支撑等内容
