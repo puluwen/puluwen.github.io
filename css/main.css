@@ -841,11 +841,11 @@ img::-moz-selection {
     padding: 0;
     list-style-type: none;
     text-align: left; 
-    display: inline-block;
+    /*display: inline-block;*/
   }
   .post-list li {
     margin: 0 0 2.2em 0;
-    float: left;
+    /*float: left;*/
 
     -moz-box-shadow:4px 4px 4px #efefef, 
     -4px -4px 4px #efefef, 
