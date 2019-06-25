@@ -421,8 +421,8 @@ img::-moz-selection {
 
   .content-wrapper {
     z-index: 800;
-    width: 70%;
-    margin-left: 30%; }
+    width: 75%;
+    margin-left: 25%; }
 
   .content-wrapper__inner {
     /*margin: 0 10%;*/
