@@ -9,7 +9,7 @@ tag: 工具
 
 
 
-本博客介绍SPTAG在搭建时看过的有用的博客，使用时遇到的问题
+本博客介绍SPTAG在搭建时看过的有用的博客，及使用时遇到的问题
 
 # 1.功能
 `SPTAG`是微软在2019年2月左右开源的一个用于向量搜索的工具。[github官方网站](https://github.com/microsoft/SPTAG)。
