@@ -2,7 +2,7 @@
 layout: post
 title: "优化器之间的关系图"
 date: 2019-03-12
-description: "深度学习优化器之间的关系图"
+description: "深度学习优化器（optimizer）之间的关系图"
 tag: 深度学习
 
 ---

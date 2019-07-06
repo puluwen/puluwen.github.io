@@ -2,7 +2,7 @@
 layout: post
 title: "Rasa的安装问题"
 date: 2018-12-27
-description: "介绍自己在安装Rasa的过程中遇到的坑"
+description: "rasa是一个开源的基于槽填充的问答系统框架，此文介绍自己在安装Rasa的过程中遇到的坑"
 tag: 问答系统
 
 ---

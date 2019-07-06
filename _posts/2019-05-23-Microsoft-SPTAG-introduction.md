@@ -2,7 +2,7 @@
 layout: post
 title: "微软SPTAG向量搜索工具"
 date: 2019-05-23
-description: "介绍SPTAG的搭建和使用时遇到的一些问题"
+description: "介绍微软向量最近领搜索工具SPTAG的搭建和使用时遇到的一些问题"
 tag: 工具
 
 ---
