@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Latex总结(持续更新) "
+title: "Latex投稿时一些方法总结(持续更新) "
 date: 2019-09-07
 description: 总结在用Latex写会议论文和期刊论文中遇到的问题和方法
 tag: 投稿
