@@ -26,7 +26,7 @@ tag: 投稿
 ```
 
 # 4.一个作者多个单位
-如果用会议/期刊模板里提供的方法一直搞不出单个作者多单位，可以用*\textsuperscript{1} *模拟多单位时作者名右上角角标，然后用纯文本填写作者单位 <br>
+如果用会议/期刊模板里提供的方法一直搞不出单个作者多单位，可以用` \textsuperscript{1} `模拟多单位时作者名右上角角标，然后用纯文本填写作者单位 <br>
 参考：https://blog.csdn.net/qq997843911/article/details/99779343
 ```latex
 \usepackage[misc]{ifsym}
