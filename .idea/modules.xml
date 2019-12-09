@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../dp_parser/.idea/dp_parser.iml" filepath="$PROJECT_DIR$/../dp_parser/.idea/dp_parser.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/puluwen.github.io.iml" filepath="$PROJECT_DIR$/.idea/puluwen.github.io.iml" />
       <module fileurl="file://$PROJECT_DIR$/../study/.idea/study.iml" filepath="$PROJECT_DIR$/../study/.idea/study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../torch-absa/.idea/torch-absa.iml" filepath="$PROJECT_DIR$/../torch-absa/.idea/torch-absa.iml" />
     </modules>
   </component>
 </project>

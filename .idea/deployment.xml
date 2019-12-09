@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="nlp">
+    <serverData>
+      <paths name="1080语音">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/PycharmProjects/absa" local="$PROJECT_DIR$/../torch-absa" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="nlp">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/project/torch-absa" local="$PROJECT_DIR$/../torch-absa" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="plw@219.223.192.194:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/plw/PycharmProjects/absa" local="$PROJECT_DIR$/../torch-absa" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
